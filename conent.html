@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一封书信</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f5dc 0%, #e8d5b7 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'STKaiti', 'KaiTi', '楷体', serif;
+            padding: 20px;
+        }
+
+        .envelope {
+            width: 90%;
+            max-width: 600px;
+            height: 400px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .envelope:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-top: 200px solid #f1e7d0;
+            z-index: 2;
+            transition: all 0.6s ease;
+        }
+
+        .envelope.open {
+            height: 600px;
+            background: #fffdf7;
+        }
+
+        .envelope.open:before {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .letter {
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease 0.3s;
+            line-height: 1.8;
+            color: #2c2c2c;
+            font-size: 18px;
+            text-align: justify;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .envelope.open .letter {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .seal {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: #8b4513;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'STKaiti', serif;
+            font-size: 24px;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .seal:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.5);
+        }
+
+        .date {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 14px;
+            color: #666;
+            z-index: 1;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 20px;
+            color: #8b4513;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(139, 69, 19, 0.8);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .envelope.open .close-btn {
+            opacity: 1;
+        }
+
+        .close-btn:hover {
+            background: rgba(139, 69, 19, 1);
+        }
+
+        /* 滚动条样式 */
+        .letter::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .letter::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .letter::-webkit-scrollbar-thumb {
+            background: #8b4513;
+            border-radius: 3px;
+        }
+
+        .letter::-webkit-scrollbar-thumb:hover {
+            background: #654321;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope fade-in" id="envelope">
+        <div class="letter">
+            <h2 style="text-align:center;margin-bottom:20px;color:#8b4513;">致&nbsp;半糖去冰烤鱿鱼</h2>
+          
+            <p style="text-indent:2em;">见信好。</p>
+            <p style="text-indent:2em;">以前说“见字如面”，现在的网络时代，我觉得可以说“见&nbsp;HTML&nbsp;Page&nbsp;如面”了。</p>
+            <p style="text-indent:2em;">首先抱歉让你花了“些”时间等待这篇回应；但我觉得这篇文字值得用一些形式化的方法回应，所以做了这个信的页面。</p>
+            <p style="text-indent:2em;">谢谢你的文字，让我在这个下午（或者说这个暑假）收获了一份很惊喜的礼物。其实很多人说我自律、自学能力好；可当我看到网上有的朋友很小就在开发游戏、开公司和工作室，或者在&nbsp;Scratch&nbsp;平台上看到无数厉害的人时，我也会莫名生出焦躁。你说自己“总站在雾里看自己”，其实谁又不在雾中？这片雾可能是他人的闪光、未来的迷茫，或对自己的一点小“不确信”。步入一个又一个新环境，雾也许会越来越浓，同时还会有更多优秀的人走在前头。但这更让我确信：拥有一份目标感、肯定自己的意义所在。所以当你提到“那份目标感”时，我很感激，也很惊喜。同时，我觉得你本身也是一个自信且坚定的人；寻找光的同时，很多时候你其实已经成为光了。（P.S.&nbsp;如与奥特曼台词雷同，纯属巧合）</p>
+            <p style="text-indent:2em;">有时刷到你在朋友圈的日记，我第一时间还以为你在转发哪位“大师”的散文。当意识到是你自己写的，不禁被你那些细腻的周遭感受与“奇妙比喻”震撼。虽然我们平时接触很少（或者说，我线下不太善于沟通，表达也偏少），但能看出你是一个“热烈”&nbsp;and&nbsp;浪漫的人。你在日记里写：“原来生命本无归途，不过是在无尽的光流里，做一场永恒的奔赴。”也许生命也无来路，不过是在有限的岁月中，留一篇俄顷的热烈。所记录的每一篇文字、做出的每一个勇敢举动，都是生命的来路。不知这封信值不值得作为“一篇俄顷的热烈”，但读完你的“信”，我真的很开心。</p>
+            <p style="text-indent:2em;">不知道你未来要去哪里——国际或体制内，云高还是别的学校；也许你正在旅途中。我收到了你的心意，也希望你带着这份心意，坚定且享受地走下去；等到一片更好看的风景，继续写写日记，保持好心情啊。</p>
+          
+            <div class="signature">
+              柚子<br>
+              2025.7.25
+            </div>
+          </div>
+        <div class="seal" onclick="openLetter()">启</div>
+    </div>
+
+    <script>
+        function openLetter() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.add('open');
+            
+            // 添加纸张展开音效
+            const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log('Audio play failed'));
+
+            document.querySelector('.seal').style.display = 'none'; 
+        }
+
+        // 点击信封任意位置打开
+        document.getElementById('envelope').addEventListener('click', function(e) {
+            if (!this.classList.contains('open') && !e.target.classList.contains('seal')) {
+                openLetter();
+            }
+        });
+
+        // 防止信纸点击事件冒泡
+        document.querySelector('.letter').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
